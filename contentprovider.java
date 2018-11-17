@@ -196,3 +196,367 @@ public class MyContentProvider extends ContentProvider {
 
     }
 }
+/////////////////////////////////////////////////////////////////////////////
+package com.example.anis.tp06_suite;
+
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
+
+public class AccesDonnees  {
+
+    ContentResolver cr;
+     public AccesDonnees(Context context){
+         //initialiser le contentresolver
+         cr=context.getContentResolver();
+         }
+
+    public final static int VERSION = 9;
+    public final static String DB_NAME = "base_geo";
+    public final static String TABLE_GEO = "geo";
+    public final static String COLONNE_PAYS = "pays";
+    public final static String COLONNE_CAPITALE = "capitale";
+    public final static String COLONNE_CONTINENT = "continent";
+    public final static String COLONNE_SUPERFICIE = "superficie";
+
+
+
+    public final static String TABLE_STAT = "stat";
+    public final static String COLONNE_ANNEE = "annee";
+    public final static String COLONNE_POPULATION = "population";
+
+    public void ajoutPays(String pays,String capitale,String contient, int superficie){
+        ContentValues cv = new ContentValues();
+        cv.put(COLONNE_PAYS,pays);
+        cv.put(COLONNE_CAPITALE,capitale);
+        cv.put(COLONNE_CONTINENT,contient);
+        cv.put(COLONNE_SUPERFICIE,superficie);
+        Uri.Builder builder = (new Uri.Builder()).scheme("content")
+                .authority("fr.votrenom.geographie")
+                .appendPath(TABLE_GEO);
+       Uri uri= builder.build();
+
+        cr.insert(uri,cv);
+
+
+    }
+
+    public void ajoutStat(String pays,int anne, int population){
+
+        ContentValues cv=new ContentValues();
+        cv.put(COLONNE_PAYS,pays);
+        cv.put(COLONNE_ANNEE,anne);
+        cv.put(COLONNE_POPULATION,population);
+
+        Uri.Builder builder = (new Uri.Builder().scheme("content")).authority("fr.votrenom.geographie").appendPath("stat");
+
+        cr.insert(builder.build(),cv);
+
+        }
+
+
+    public void init() {
+        ajoutPays("France", "Paris", "Europe", 551500);
+        ajoutStat("France", 2005, 61233900);
+        ajoutStat("France", 2010, 63026740);
+        ajoutStat("France", 2015, 64457201);
+        ajoutPays("Togo", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo", 1981, 2719567);
+        ajoutStat("Togo", 2005, 5683268);
+        ajoutStat("Togo", 2010, 6502952);
+        ajoutStat("Togo", 2015, 7416802);
+        ajoutPays("Bhoutan", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan", 2005, 656639);
+        ajoutStat("Bhoutan", 2010, 727641);
+        ajoutStat("Bhoutan", 2015, 787836);
+        ajoutPays("France1", "Paris", "Europe", 551500);
+        ajoutStat("France1", 2005, 61233900);
+        ajoutStat("France1", 2010, 63026740);
+        ajoutStat("France1", 2015, 64457201);
+        ajoutPays("Togo1", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo1", 1981, 2719567);
+        ajoutStat("Togo1", 2005, 5683268);
+        ajoutStat("Togo1", 2010, 6502952);
+        ajoutStat("Togo1", 2015, 7416802);
+        ajoutPays("Bhoutan1", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan1", 2005, 656639);
+        ajoutStat("Bhoutan1", 2010, 727641);
+        ajoutStat("Bhoutan1", 2015, 787836);
+        ajoutPays("France2", "Paris", "Europe", 551500);
+        ajoutStat("France2", 2005, 61233900);
+        ajoutStat("France2", 2010, 63026740);
+        ajoutStat("France2", 2015, 64457201);
+        ajoutPays("Togo2", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo2", 1981, 2719567);
+        ajoutStat("Togo2", 2005, 5683268);
+        ajoutStat("Togo2", 2010, 6502952);
+        ajoutStat("Togo2", 2015, 7416802);
+        ajoutPays("Bhoutan2", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan2", 2005, 656639);
+        ajoutStat("Bhoutan2", 2010, 727641);
+        ajoutStat("Bhoutan2", 2015, 787836);
+        ajoutPays("France3", "Paris", "Europe", 551500);
+        ajoutStat("France3", 2005, 61233900);
+        ajoutStat("France3", 2010, 63026740);
+        ajoutStat("France3", 2015, 64457201);
+        ajoutPays("Togo3", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo3", 1981, 2719567);
+        ajoutStat("Togo3", 2005, 5683268);
+        ajoutStat("Togo3", 2010, 6502952);
+        ajoutStat("Togo3", 2015, 7416802);
+        ajoutPays("Bhoutan3", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan3", 2005, 656639);
+        ajoutStat("Bhoutan3", 2010, 727641);
+        ajoutStat("Bhoutan3", 2015, 787836);
+        ajoutPays("France4", "Paris", "Europe", 551500);
+        ajoutStat("France4", 2005, 61233900);
+        ajoutStat("France4", 2010, 63026740);
+        ajoutStat("France4", 2015, 64457201);
+        ajoutPays("Togo4", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo4", 1981, 2719567);
+        ajoutStat("Togo4", 2005, 5683268);
+        ajoutStat("Togo4", 2010, 6502952);
+        ajoutStat("Togo4", 2015, 7416802);
+        ajoutPays("Bhoutan4", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan4", 2005, 656639);
+        ajoutStat("Bhoutan4", 2010, 727641);
+        ajoutStat("Bhoutan4", 2015, 787836);
+        ajoutPays("France5", "Paris", "Europe", 551500);
+        ajoutStat("France5", 2005, 61233900);
+        ajoutStat("France5", 2010, 63026740);
+        ajoutStat("France5", 2015, 64457201);
+        ajoutPays("Togo5", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo5", 1981, 2719567);
+        ajoutStat("Togo5", 2005, 5683268);
+        ajoutStat("Togo5", 2010, 6502952);
+        ajoutStat("Togo5", 2015, 7416802);
+        ajoutPays("Bhoutan5", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan5", 2005, 656639);
+        ajoutStat("Bhoutan5", 2010, 727641);
+        ajoutStat("Bhoutan5", 2015, 787836);
+        ajoutPays("France6", "Paris", "Europe", 551500);
+        ajoutStat("France6", 2005, 61233900);
+        ajoutStat("France6", 2010, 63026740);
+        ajoutStat("France6", 2015, 64457201);
+        ajoutPays("Togo6", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo6", 1981, 2719567);
+        ajoutStat("Togo6", 2005, 5683268);
+        ajoutStat("Togo6", 2010, 6502952);
+        ajoutStat("Togo6", 2015, 7416802);
+        ajoutPays("Bhoutan6", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan6", 2005, 656639);
+        ajoutStat("Bhoutan6", 2010, 727641);
+        ajoutStat("Bhoutan6", 2015, 787836);
+        ajoutPays("France7", "Paris", "Europe", 551500);
+        ajoutStat("France7", 2005, 61233900);
+        ajoutStat("France7", 2010, 63026740);
+        ajoutStat("France7", 2015, 64457201);
+        ajoutPays("Togo7", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo7", 1981, 2719567);
+        ajoutStat("Togo7", 2005, 5683268);
+        ajoutStat("Togo7", 2010, 6502952);
+        ajoutStat("Togo7", 2015, 7416802);
+        ajoutPays("Bhoutan7", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan7", 2005, 656639);
+        ajoutStat("Bhoutan7", 2010, 727641);
+        ajoutStat("Bhoutan7", 2015, 787836);
+        ajoutPays("France8", "Paris", "Europe", 551500);
+        ajoutStat("France8", 2005, 61233900);
+        ajoutStat("France8", 2010, 63026740);
+        ajoutStat("France8", 2015, 64457201);
+        ajoutPays("Togo8", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo8", 1981, 2719567);
+        ajoutStat("Togo8", 2005, 5683268);
+        ajoutStat("Togo8", 2010, 6502952);
+        ajoutStat("Togo8", 2015, 7416802);
+        ajoutPays("Bhoutan8", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan8", 2005, 656639);
+        ajoutStat("Bhoutan8", 2010, 727641);
+        ajoutStat("Bhoutan8", 2015, 787836);
+        ajoutPays("France11", "Paris", "Europe", 551500);
+        ajoutStat("France11", 2005, 61233900);
+        ajoutStat("France11", 2010, 63026740);
+        ajoutStat("France11", 2015, 64457201);
+        ajoutPays("Togo11", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo11", 1981, 2719567);
+        ajoutStat("Togo11", 2005, 5683268);
+        ajoutStat("Togo11", 2010, 6502952);
+        ajoutStat("Togo11", 2015, 7416802);
+        ajoutPays("Bhoutan11", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan11", 2005, 656639);
+        ajoutStat("Bhoutan11", 2010, 727641);
+        ajoutStat("Bhoutan11", 2015, 787836);
+        ajoutPays("France12", "Paris", "Europe", 551500);
+        ajoutStat("France12", 2005, 61233900);
+        ajoutStat("France12", 2010, 63026740);
+        ajoutStat("France12", 2015, 64457201);
+        ajoutPays("Togo12", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo12", 1981, 2719567);
+        ajoutStat("Togo12", 2005, 5683268);
+        ajoutStat("Togo12", 2010, 6502952);
+        ajoutStat("Togo12", 2015, 7416802);
+        ajoutPays("Bhoutan12", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan12", 2005, 656639);
+        ajoutStat("Bhoutan12", 2010, 727641);
+        ajoutStat("Bhoutan12", 2015, 787836);
+        ajoutPays("France13", "Paris", "Europe", 551500);
+        ajoutStat("France13", 2005, 61233900);
+        ajoutStat("France13", 2010, 63026740);
+        ajoutStat("France13", 2015, 64457201);
+        ajoutPays("Togo13", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo13", 1981, 2719567);
+        ajoutStat("Togo13", 2005, 5683268);
+        ajoutStat("Togo13", 2010, 6502952);
+        ajoutStat("Togo13", 2015, 7416802);
+        ajoutPays("Bhoutan13", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan13", 2005, 656639);
+        ajoutStat("Bhoutan13", 2010, 727641);
+        ajoutStat("Bhoutan13", 2015, 787836);
+        ajoutPays("France14", "Paris", "Europe", 551500);
+        ajoutStat("France14", 2005, 61233900);
+        ajoutStat("France14", 2010, 63026740);
+        ajoutStat("France14", 2015, 64457201);
+        ajoutPays("Togo14", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo14", 1981, 2719567);
+        ajoutStat("Togo14", 2005, 5683268);
+        ajoutStat("Togo14", 2010, 6502952);
+        ajoutStat("Togo14", 2015, 7416802);
+        ajoutPays("Bhoutan14", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan14", 2005, 656639);
+        ajoutStat("Bhoutan14", 2010, 727641);
+        ajoutStat("Bhoutan14", 2015, 787836);
+        ajoutPays("France15", "Paris", "Europe", 551500);
+        ajoutStat("France15", 2005, 61233900);
+        ajoutStat("France15", 2010, 63026740);
+        ajoutStat("France15", 2015, 64457201);
+        ajoutPays("Togo15", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo15", 1981, 2719567);
+        ajoutStat("Togo15", 2005, 5683268);
+        ajoutStat("Togo15", 2010, 6502952);
+        ajoutStat("Togo15", 2015, 7416802);
+        ajoutPays("Bhoutan15", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan15", 2005, 656639);
+        ajoutStat("Bhoutan15", 2010, 727641);
+        ajoutStat("Bhoutan15", 2015, 787836);
+        ajoutPays("France16", "Paris", "Europe", 551500);
+        ajoutStat("France16", 2005, 61233900);
+        ajoutStat("France16", 2010, 63026740);
+        ajoutStat("France16", 2015, 64457201);
+        ajoutPays("Togo16", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo16", 1981, 2719567);
+        ajoutStat("Togo16", 2005, 5683268);
+        ajoutStat("Togo16", 2010, 6502952);
+        ajoutStat("Togo16", 2015, 7416802);
+        ajoutPays("Bhoutan16", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan16", 2005, 656639);
+        ajoutStat("Bhoutan16", 2010, 727641);
+        ajoutStat("Bhoutan16", 2015, 787836);
+        ajoutPays("France17", "Paris", "Europe", 551500);
+        ajoutStat("France17", 2005, 61233900);
+        ajoutStat("France17", 2010, 63026740);
+        ajoutStat("France17", 2015, 64457201);
+        ajoutPays("Togo17", "Lomé", "Afrique", 56785);
+        ajoutStat("Togo17", 1981, 2719567);
+        ajoutStat("Togo17", 2005, 5683268);
+        ajoutStat("Togo17", 2010, 6502952);
+        ajoutStat("Togo17", 2015, 7416802);
+        ajoutPays("Bhoutan17", "Thimphou", "Asie", 38394);
+        ajoutStat("Bhoutan17", 2005, 656639);
+        ajoutStat("Bhoutan17", 2010, 727641);
+        ajoutStat("Bhoutan17", 2015, 787836);
+    }
+
+    public int surface(String pays){
+        //On fait une fonction suraface qui prend comme attribut un pays et fait une recherche dans la base 'faire selection
+        //sur se pays ' puis retourn sa surface .
+        Log.i("tp6_suit","arriiiiive ");
+
+        //d'abord on doit creé le builder "apreé faire un uri matcher pour infos pays "
+        //donc on donne l'authority / ---> et on fait appendpath pour faire /.../...../../ et aà la fin on donne la variable pays
+        Uri.Builder builder = (new Uri.Builder().scheme("content")).authority("fr.votrenom.geographie")
+                .appendPath("infopays").appendPath(pays);
+        Log.i("tp6_suit","arriiiiive 1");
+        // on fait build de notre URI
+      Uri u=  builder.build();
+        Log.i("tp6_suit","arriiiiive 2");
+        // on cree un cursor utilisant le query du content provider
+        //on donne comme args 1:Uri
+        //le autres  null puisque on veut tout recuper
+       Cursor c= cr.query(u,null,null,null,null);
+        Log.i("tp6_suit","arriiiiive 3");
+        // on deplace directement dans la premier ligne
+        c. moveToFirst();
+        Log.i("tp6_suit","arriiiiive 4");
+
+        Log.i("tp6_suit","superficie="+c.getInt(c.getColumnIndex("superficie")));
+        //on fait ub GetColumnIndex pour recuperer l'indice de la superficie
+        //on fait getInt pour recuprer le contenu dur la colonne de l'indice
+        return  c.getInt(c.getColumnIndex("superficie"));
+
+    }
+
+    public int densite(String pays,String annee1){
+
+
+            //On fait une fonction suraface qui prend comme attribut un pays et fait une recherche dans la base 'faire selection
+            //sur se pays ' puis retourn sa surface .
+            Log.i("tp6_suit","arriiiiive ");
+
+            //d'abord on doit creé le builder "apreé faire un uri matcher pour infos pays "
+            //donc on donne l'authority / ---> et on fait appendpath pour faire /.../...../../ et aà la fin on donne la variable pays
+            Uri.Builder builder = (new Uri.Builder().scheme("content")).authority("fr.votrenom.geographie")
+                    .appendPath("uneligne").appendPath(pays).appendPath(annee1);
+            Log.i("tp6_suit","arriiiiive 1");
+            // on fait build de notre URI
+            Uri u1=  builder.build();
+        Log.i("tp6_suit",u1.toString());
+            Log.i("tp6_suit","arriiiiive 2");
+            // on cree un cursor utilisant le query du content provider
+            //on donne comme args 1:Uri
+            //le autres  null puisque on veut tout recuper
+            Cursor c= cr.query(u1,null,null,null,null);
+            Log.i("tp6_suit","arriiiiive 3");
+            // on deplace directement dans la premier ligne
+            c. moveToFirst();
+            Log.i("tp6_suit","arriiiiive 4");
+
+            Log.i("tp6_suit","superficie="+c.getInt(c.getColumnIndex("population")));
+            //on fait ub GetColumnIndex pour recuperer l'indice de la superficie
+            //on fait getInt pour recuprer le contenu dur la colonne de l'indice
+            return  c.getInt(c.getColumnIndex("population"));
+    }
+
+    public Cursor spinner(){
+
+        Uri.Builder builder = (new Uri.Builder()).scheme("content")
+                .authority("fr.votrenom.geographie")
+                .appendPath(TABLE_GEO);
+        Uri uri= builder.build();
+        String []collumns ={"pays"};
+
+        Cursor c= cr.query(uri,null,null,null,null);
+    return c;
+
+    }
+
+    public  int supprimer(String pays){
+
+        Uri.Builder builder = (new Uri.Builder()).scheme("content")
+                .authority("fr.votrenom.geographie")
+                .appendPath("supprimepays").appendPath(pays);
+        Uri uri= builder.build();
+        String []collumns ={pays};
+
+        int c= cr.delete(uri,"pays=?",collumns);
+
+        return c;
+
+    }
+
+
+
+}
+
